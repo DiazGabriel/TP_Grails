@@ -20,43 +20,40 @@
             <div class="message" role="status">${flash.message}</div>
             </g:if>
 
-                <ol class="property-list annonce">
+            <form action="save" method="POST" enctype="multipart/form-data">
 
-                    <li class="fieldcontain">
-                        <span id="title-label" class="property-label">Title</span>
-                        <div class="property-value" aria-labelledby="title-label">test</div>
-                    </li>
-
-                    <li class="fieldcontain">
-                        <span id="description-label" class="property-label">Description</span>
-                        <div class="property-value" aria-labelledby="description-label">test</div>
-                    </li>
-
-                    <li class="fieldcontain">
-                        <span id="validTill-label" class="property-label">Valid Till</span>
-                        <div class="property-value" aria-labelledby="validTill-label">2019-10-01 00:00:00 CEST</div>
-                    </li>
-
-                    <li class="fieldcontain">
-                        <span id="illustration-label" class="property-label">Illustration</span>
-                        <div class="property-value" aria-labelledby="illustration-label"><ul><li><a href="/illustration/show/17">com.mbds.annonces.Illustration : 17</a></li></ul></div>
-                    </li>
-
-                    <li class="fieldcontain">
-                        <span id="state-label" class="property-label">State</span>
-                        <div class="property-value" aria-labelledby="state-label">False</div>
-                    </li>
-
-                    <li class="fieldcontain">
-                        <span id="author-label" class="property-label">Author</span>
-                        <div class="property-value" aria-labelledby="author-label"><a href="/user/show/1">username</a></div>
-                    </li>
+                <fieldset class="form">
+                <div id="show">
+                    <div class='fieldcontain'>
+                        <label>Title:</label>${annonce.title}
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>Description:</label>${annonce.description}
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>validTill:</label><g:formatDate format="dd MMM yyyy" date="${annonce.validTill}"/>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>Illustration:</label>
+                            <g:each in="${annonce.illustration}" var="illustration">
+                                <li><img src="http://localhost:8080/assets/${illustration.filename}"/></li>
+                            </g:each>
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>State:</label>${annonce.state}
+                    </div>
+                    <div class='fieldcontain'>
+                        <label>Author:</label>${annonce.author}
+                    </div>
+                </div>
+                </fieldset>
             <g:form resource="${this.annonce}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.annonce}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
+            </form>
         </div>
     </body>
 </html>

@@ -43,8 +43,8 @@
                             </ul>
                         </td>
                         <td>${instance.state}</td>
-                        <td>${instance.dateCreated}</td>
-                        <td>${instance.validTill}</td>
+                        <td><g:formatDate format="dd MMM yyyy" date="${instance.dateCreated}"/></td>
+                        <td><g:formatDate format="dd MMM yyyy" date="${instance.validTill}"/></td>
                     </tr>
                 </g:each>
             </table>

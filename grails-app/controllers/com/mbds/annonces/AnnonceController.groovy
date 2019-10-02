@@ -27,21 +27,26 @@ class AnnonceController {
         HttpServletRequest req = request
         // Upload de l'image
         def file = req.getFile("myFile")
+        def fileName
 
-        // Construction d'un nom unique pour l'image
-        int i = 1
-        def fileName = params.title + "_image_" + i + ".png"
-        File image = new File(grailsApplication.config.maconfig.assets_path + fileName)
-        if (image.exists()) {
-            while (image.exists()) {
-                i += 1
-                fileName = params.title + "_image_" + i + ".png"
-                image = new File(grailsApplication.config.maconfig.assets_path + fileName)
+        if (file != null) {
+            // Construction d'un nom unique pour l'image
+            int i = 1
+            fileName = params.title + "_image_" + i + ".png"
+            File image = new File(grailsApplication.config.maconfig.assets_path + fileName)
+            if (image.exists()) {
+                while (image.exists()) {
+                    i += 1
+                    fileName = params.title + "_image_" + i + ".png"
+                    image = new File(grailsApplication.config.maconfig.assets_path + fileName)
+                }
             }
-        }
 
-        // On charge l'image dans le dossier asserts/image
-        file.transferTo(image)
+            // On charge l'image dans le dossier asserts/image
+            file.transferTo(image)
+        } else {
+            fileName = null
+        }
 
         def annonce = new Annonce(params).addToIllustration(filename: fileName)
 
@@ -62,13 +67,13 @@ class AnnonceController {
     def edit(Long id) {
         respond annonceService.get(id)
     }
-    def update(Annonce annonce) {
-        if (annonce == null) {
-            notFound()
-            return
-        }
+    def update() {
+
+
+        def annonceUpdated = new Annonce(params)
+
         try {
-            annonceService.save(annonce)
+            annonceService.save(annonceUpdated)
         } catch (ValidationException e) {
             respond annonce.errors, view:'edit'
             return

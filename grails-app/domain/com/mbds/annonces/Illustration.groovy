@@ -1,7 +1,5 @@
 package com.mbds.annonces
 
-import java.awt.Image
-
 class Illustration {
 
     String filename

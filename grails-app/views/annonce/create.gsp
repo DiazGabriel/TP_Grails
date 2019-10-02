@@ -29,15 +29,11 @@
 
             <form action="save" method="POST" enctype="multipart/form-data">
 
-                <!--
-                Le contenu du formulaire est gérer manuellement pour pouvoir intégrer l'upload des image avec ajax
-                -->
-
                 <fieldset class="form">
                     <div class='fieldcontain required'>
                         <label for='title'>Title
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="title" value="" required="" id="title" />
+                        </label><input type="text" name="title" value="${annonce.title}" required="" id="title" />
                     </div><div class='fieldcontain required'>
                     <label for='description'>Description
                         <span class='required-indicator'>*</span>
@@ -45,9 +41,9 @@
                 </div><div class='fieldcontain required'>
                     <label for='validTill'>Valid Till
                         <span class='required-indicator'>*</span>
-                    </label><input type="hidden" name="validTill" value="date.struct" />
-                    <select name="validTill_day" id="validTill_day" aria-labelledby="validTill" type="Date"
-                    ><option value="1" selected="selected">1</option>
+                    </label><input type="hidden" name="validTill" value="${annonce.validTill}" />
+                    <select name="validTill_day" id="validTill_day" aria-labelledby="validTill"
+                    ><option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -79,7 +75,7 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select name="validTill_month" id="validTill_month" aria-labelledby="validTill" type="Date"
+                    <select name="validTill_month" id="validTill_month" aria-labelledby="validTill"
                     ><option value="1">janvier</option>
                         <option value="2">février</option>
                         <option value="3">mars</option>
@@ -89,11 +85,11 @@
                         <option value="7">juillet</option>
                         <option value="8">août</option>
                         <option value="9">septembre</option>
-                        <option value="10" selected="selected">octobre</option>
+                        <option value="10">octobre</option>
                         <option value="11">novembre</option>
                         <option value="12">décembre</option>
                     </select>
-                    <select name="validTill_year" id="validTill_year" aria-labelledby="validTill" type="Date"
+                    <select name="validTill_year" id="validTill_year" aria-labelledby="validTill"
                     ><option value="2119">2119</option>
                         <option value="2118">2118</option>
                         <option value="2117">2117</option>
@@ -194,7 +190,7 @@
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
-                        <option value="2019" selected="selected">2019</option>
+                        <option value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
                         <option value="2016">2016</option>
@@ -310,7 +306,7 @@
                         <span class='required-indicator'>*</span>
                     </label>
                     <select name="author.id" required="" id="author" >
-                        <option value="1" >username</option>
+                        <option value="1">username</option>
                     </select>
                 </div>
                 </fieldset>
