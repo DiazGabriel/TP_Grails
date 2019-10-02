@@ -24,27 +24,21 @@
                     <th class="sortable"><a href="/annonces/index?sort=title&amp;max=10&amp;order=asc">Title</a></th>
                     <th class="sortable"><a href="/annonces/index?sort=description&amp;max=10&amp;orderBy=asc">Description</a></th>
                     <th class="sortable"><a href="/annonces/index?sort=user&amp;max=10&amp;orderBy=asc">author</a></th>
-                    <th class="sortable"><a href="/annonces/index?sort=state&amp;max=10&amp;orderBy=asc">State</a></th>
                     <th class="sortable"><a href="/annonces/index?sort=illustration&amp;max=10&amp;orderBy=asc">Illustration</a></th>
+                    <th class="sortable"><a href="/annonces/index?sort=state&amp;max=10&amp;orderBy=asc">State</a></th>
                     <th class="sortable"><a href="/annonces/index?sort=dateCreated&amp;max=10&amp;orderBy=asc">Create Date</a></th>
                     <th class="sortable"><a href="/annonces/index?sort=validTill&amp;max=10&amp;orderBy=asc">Valid Till</a></th>
                 </tr>
                 </thead>
                 <g:each in="${annonceList}" var="instance">
                     <tr>
-                        <td>${instance.title}</td>
+                        <td><g:link controller="annonce" action="show" id="${instance.id}">${instance.title}</g:link></td>
                         <td>${instance.description}</td>
-                        <td>
-                            <ul>
-                                <g:each in="${instance.author}" var="author">
-                                    <li>${author.username}</li>
-                                </g:each>
-                            </ul>
-                        </td>
+                        <td><g:link controller="user" action="show" id="${instance.author.id}">${instance.author.username}</g:link></td>
                         <td>
                             <ul>
                                 <g:each in="${instance.illustration}" var="illustration">
-                                    <li><img src="${illustration.filename}"/></li>
+                                    <li><img src="http://localhost:8080/assets/${illustration.filename}"/></li>
                                 </g:each>
                             </ul>
                         </td>

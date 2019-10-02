@@ -1,5 +1,7 @@
 package com.mbds.annonces
 
+import java.awt.Image
+
 class Illustration {
 
     String filename
@@ -7,4 +9,5 @@ class Illustration {
     static constraints = {
         filename blank:false
     }
+
 }
