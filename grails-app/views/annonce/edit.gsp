@@ -26,15 +26,39 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.annonce}" method="PUT">
-                <g:hiddenField name="version" value="${this.annonce?.version}" />
-                <fieldset class="form">
-                    <f:all bean="annonce"/>
+
+                <form action="/annonce/update/${annonce.id}" method="post" enctype="multipart/form-data">
+                    <g:hiddenField name="version" value="${this.annonce?.version}" />
+
+                        <fieldset class="form">
+                            <div class='fieldcontain required'>
+                                <label for='title'>Title
+                                    <span class='required-indicator'>*</span>
+                                </label><input type="text" name="title" value="${annonce.title}" required="" id="title" />
+                            </div><div class='fieldcontain required'>
+                            <label for='description'>Description
+                                <span class='required-indicator'>*</span>
+                            </label><input type="text" name="description" value="${annonce.description}" required="" id="description" />
+                        </div><div class='fieldcontain required'>
+                            <f:field bean="annonce" property="validTill"/>
+                        </div>
+                        <div class='fieldcontain'>
+                            <label>Illustration:</label>
+                            <input type="file" name="myFile" id="illustration"/>
+                                <g:each in="${annonce.illustration}" var="illustration">
+                                    <li><img src="http://localhost:8080/assets/${illustration.filename}"/></li>
+                                </g:each>
+                        </div>
+                        <div class='fieldcontain'>
+                            <label for='state'>State</label><input type="hidden" name="_state" /><input type="checkbox" name="state" checked="checked" id="state" value="${annonce.state}" />
+                        </div><div class='fieldcontain required'>
+                            </label><f:field bean="annonce" property="author"/>
+                        </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
-            </g:form>
+                </form>
         </div>
     </body>
 </html>
