@@ -26,15 +26,25 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.user}" method="PUT">
+
+            <form action="/user/update/${user.id}" method="post" enctype="multipart/form-data">
                 <g:hiddenField name="version" value="${this.user?.version}" />
+
                 <fieldset class="form">
-                    <f:all bean="user"/>
+                    <f:field bean="user" property="username"/>
+                    <f:field bean="user" property="password"/>
                 </fieldset>
+                <div class="fieldcontain">
+                    <span id="illustrations-label" class="property-label">Illustrations</span>
+                    <div class="property-value" aria-labelledby="illustrations-label">
+                            <input type="file" name="myFile" value="${user.thumbnail}"/>
+                    </div>
+                </div>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
-            </g:form>
+            </form>
+
         </div>
     </body>
 </html>

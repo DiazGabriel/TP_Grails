@@ -19,13 +19,45 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="user" />
-            <g:form resource="${this.user}" method="DELETE">
-                <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.user}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+
+            <form action="save" method="POST" enctype="multipart/form-data">
+
+                <fieldset class="form">
+                    <div id="show">
+                        <div class='fieldcontain'>
+                            <label>User name:</label>${user.username}
+                        </div>
+                        <div class='fieldcontain'>
+                            <label>Password:</label>**********
+                        </div>
+                        <div class="fieldcontain">
+                            <span id="thumbnail-label" class="property-label">Thumbnail:</span>
+                            <div class="property-value" aria-labelledby="thumbnail-label">
+                                <ul>
+                                    <g:each in="${user.thumbnail}" var="illustration">
+                                        <img width="100" height="100" src="http://localhost:8080/assets/${illustration.filename}"/>
+                                    </g:each>
+                                </ul></div>
+                        </div>
+                        <div class="fieldcontain">
+                            <span id="annonce-label" class="property-label">Annonce:</span>
+                            <div class="property-value" aria-labelledby="annonce-label">
+                                <ul>
+                                    <g:each in="${user.annonces}" var="annonce">
+                                        <li>${annonce.title}</li>
+                                    </g:each>
+                                </ul></div>
+                        </div>
+                    </div>
                 </fieldset>
-            </g:form>
+                <g:form resource="${this.user}" method="DELETE">
+                    <fieldset class="buttons">
+                        <g:link class="edit" action="edit" resource="${this.user}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                        <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    </fieldset>
+                </g:form>
+            </form>
+
         </div>
     </body>
 </html>

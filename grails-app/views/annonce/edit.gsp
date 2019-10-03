@@ -42,13 +42,16 @@
                         </div><div class='fieldcontain required'>
                             <f:field bean="annonce" property="validTill"/>
                         </div>
-                        <div class='fieldcontain'>
-                            <label>Illustration:</label>
-                            <input type="file" name="myFile" id="illustration"/>
-                                <g:each in="${annonce.illustration}" var="illustration">
-                                    <li><img src="http://localhost:8080/assets/${illustration.filename}"/></li>
-                                </g:each>
-                        </div>
+                            <div class="fieldcontain">
+                                <span id="illustrations-label" class="property-label">Illustrations</span>
+                                <div class="property-value" aria-labelledby="illustrations-label">
+                                    <input type="file" name="myFile" id="illustration"/>
+                                    <ul>
+                                        <g:each in="${annonce.illustration}" var="illustration">
+                                            <li><img width="100" height="100" src="http://localhost:8080/assets/${illustration.filename}"/></li>
+                                        </g:each>
+                                    </ul></div>
+                            </div>
                         <div class='fieldcontain'>
                             <label for='state'>State</label><input type="hidden" name="_state" /><input type="checkbox" name="state" checked="checked" id="state" value="${annonce.state}" />
                         </div><div class='fieldcontain required'>

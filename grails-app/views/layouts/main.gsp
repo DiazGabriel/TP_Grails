@@ -16,7 +16,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
+%{--<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
     <a class="navbar-brand" href="/#"><asset:image src="grails.svg" alt="Grails Logo"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,11 @@
         </ul>
     </div>
 
-</nav>
+</nav>--}%
 
 <g:layoutBody/>
 
+%{--
 <div class="footer row" role="contentinfo">
     <div class="col">
         <a href="http://guides.grails.org" target="_blank">
@@ -58,6 +59,7 @@
         <p>Get feedback and share your experience with other Grails developers in the community <a href="https://grails-slack.cfapps.io" target="_blank">Slack channel</a>.</p>
     </div>
 </div>
+--}%
 
 
 <div id="spinner" class="spinner" style="display:none;">

@@ -33,11 +33,14 @@
                     <div class='fieldcontain'>
                         <label>validTill:</label><g:formatDate format="dd MMM yyyy" date="${annonce.validTill}"/>
                     </div>
-                    <div class='fieldcontain'>
-                        <label>Illustration:</label>
-                            <g:each in="${annonce.illustration}" var="illustration">
-                                <li><img src="http://localhost:8080/assets/${illustration.filename}"/></li>
-                            </g:each>
+                    <div class="fieldcontain">
+                        <span id="illustrations-label" class="property-label">Illustrations</span>
+                        <div class="property-value" aria-labelledby="illustrations-label">
+                            <ul>
+                                <g:each in="${annonce.illustration}" var="illustration">
+                                    <li><img width="100" height="100" src="http://localhost:8080/assets/${illustration.filename}"/></li>
+                                </g:each>
+                            </ul></div>
                     </div>
                     <div class='fieldcontain'>
                         <label>State:</label>${annonce.state}
