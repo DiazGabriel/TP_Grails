@@ -14,6 +14,7 @@ class UserController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond userService.list(params), model:[userCount: userService.count()]
+
     }
 
     def show(Long id) {
@@ -38,7 +39,7 @@ class UserController {
 
     def delete(Long id) {
 
-        println("****************** DELETE ******************")
+        println("************* DELETE **************")
 
         if (id == null) {
             notFound()

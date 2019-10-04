@@ -135,6 +135,9 @@ class AnnonceController {
         annonceInstance.removeFromIllustration(illustrationInstance)
         annonceInstance.save(flush: true)
         illustrationInstance.delete(flush: true)
+
+        // Suprimmer aussi les images du dossier assets
+
     }
 
 }
