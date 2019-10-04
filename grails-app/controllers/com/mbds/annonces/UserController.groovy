@@ -70,7 +70,9 @@ class UserController {
     def userBD(User user, String action) {
         // Les méthodes save et update effectue un traitement similaire.
         // Pour éviter la redondance de code, on appel cette méthode
-        // Upload de l'image
+        // Upload de l'imageaction
+
+
         def file = request.getFile("myFile")
         def fileName
 
@@ -106,6 +108,20 @@ class UserController {
                 return
             }
         } else {
+
+            // Le User doit toujours avoir une image
+            // Lors d'un mise à jour l'ancienne image est écrasé au prfit de la nouvelle
+            // mais l'ancienne reste dans la base sans être relié à personne.
+            // on la supprimme au début avant de mettre à jour
+
+            def userId = params.id
+            user = User.get(userId)
+            def ThumbnailId = user.thumbnail.id
+            def ThumbnailInstance = Illustration.get(ThumbnailId)
+
+            File oldImage = new File(grailsApplication.config.maconfig.assets_path + ThumbnailInstance.filename)
+
+
             try {
                 user.properties = params
                 user.thumbnail = new Illustration(filename: fileName)
@@ -114,7 +130,13 @@ class UserController {
                 respond user.errors, view: 'create'
                 return
             }
+
+            if (file != null) {
+                oldImage.delete()
+                ThumbnailInstance.delete(flush: true)
+            }
         }
+
 
         request.withFormat {
             form multipartForm {
@@ -122,6 +144,8 @@ class UserController {
                 redirect user
             }
             '*' { respond user, [status: CREATED] }
+
         }
     }
+
 }

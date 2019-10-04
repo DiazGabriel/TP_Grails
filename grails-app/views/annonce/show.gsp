@@ -38,8 +38,13 @@
                         <div class="property-value" aria-labelledby="illustrations-label">
                             <ul>
                                 <g:each in="${annonce.illustration}" var="illustration">
-                                    <li><img width="100" height="100" src="http://localhost:8080/assets/${illustration.filename}"/></li>
+                                    <li><img width="100" height="100" src="http://localhost:8080/assets/${illustration.filename}"/>
+
+
+                                    </li>
+
                                 </g:each>
+
                             </ul></div>
                     </div>
                     <div class='fieldcontain'>

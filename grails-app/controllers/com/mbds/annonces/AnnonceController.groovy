@@ -135,8 +135,10 @@ class AnnonceController {
         annonceInstance.removeFromIllustration(illustrationInstance)
         annonceInstance.save(flush: true)
         illustrationInstance.delete(flush: true)
+        redirect(controller: "annonce", action: "edit", id: annonceId)
 
-        // Suprimmer aussi les images du dossier assets
+        File file = new File(grailsApplication.config.maconfig.assets_path + illustrationInstance.filename)
+        file.delete()
 
     }
 

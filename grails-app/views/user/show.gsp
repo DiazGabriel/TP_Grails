@@ -28,7 +28,7 @@
                             <label>User name:</label>${user.username}
                         </div>
                         <div class='fieldcontain'>
-                            <label>Password:</label>**********
+                            <label>Password:</label>********
                         </div>
                         <div class="fieldcontain">
                             <span id="thumbnail-label" class="property-label">Thumbnail:</span>
